@@ -9,7 +9,7 @@ const app = express()
 app.use(express.json())
 app.use(cors())
 
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 8080  // <-- изменили на 8080 для Back4App
 const BOT_TOKEN = process.env.BOT_TOKEN || 'demo-token'
 
 // создаём базу (файл появится сам)
@@ -97,4 +97,5 @@ app.post('/api/demo-session', (req, res) => {
   })
 })
 
+// заменили порт на process.env.PORT || 8080
 app.listen(PORT, () => console.log(`🚀 server running on ${PORT}`))
