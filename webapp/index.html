@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1.0" />
+<title>кейс игра — demo</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+    <!-- main content -->
+    <div id="view" class="card">
+      <!-- game tab -->
+      <div id="gameTab" class="tab active">
+        <h1>🎟 кейс‑игра</h1>
+        <div class="row">
+          <div class="bets">
+            <button class="betBtn" data-bet="1">1 TON</button>
+            <button class="betBtn" data-bet="10">10 TON</button>
+            <button class="betBtn" data-bet="100">100 TON</button>
+          </div>
+          <input id="customBet" type="number" placeholder="своя ставка" min="1" />
+        </div>
+
+        <input id="playerName" type="text" placeholder="ник (автозаполняется из telegram)" />
+
+        <div class="controls">
+          <button id="joinBtn" class="primary">встать в очередь</button>
+        </div>
+
+        <div class="queueBox">
+          <h3>очередь (max 10)</h3>
+          <ul id="queueList"></ul>
+        </div>
+
+        <div id="roundResult" class="result hidden">
+          <h3>результат</h3>
+          <div id="resultText"></div>
+          <button id="newRoundBtn">новая игра</button>
+        </div>
+      </div>
+
+      <!-- profile tab -->
+      <div id="profileTab" class="tab">
+        <h2>👤 профиль</h2>
+        <p>ник: <span id="meName">-</span></p>
+        <p>баланс: <span id="meBal">0</span> TON (демо)</p>
+      </div>
+
+      <!-- ranking -->
+      <div id="rankTab" class="tab">
+        <h2>🏆 рейтинг</h2>
+        <ul id="ranking"></ul>
+      </div>
+
+      <!-- wallet -->
+      <div id="walletTab" class="tab">
+        <h2>💼 кошелёк (демо)</h2>
+        <p>баланс: <span id="walletBal">0</span> TON</p>
+        <input id="depositVal" type="number" placeholder="сумма" />
+        <button id="depositBtn">пополнить (фейк)</button>
+      </div>
+
+      <!-- settings -->
+      <div id="settingsTab" class="tab">
+        <h2>⚙ настройки</h2>
+        <p>демо режим — реальные платежи отключены</p>
+      </div>
+    </div>
+
+    <!-- bottom nav -->
+    <nav class="bottomNav">
+      <button class="navBtn active" data-tab="gameTab">игра</button>
+      <button class="navBtn" data-tab="profileTab">профиль</button>
+      <button class="navBtn" data-tab="rankTab">рейтинг</button>
+      <button class="navBtn" data-tab="walletTab">кошелёк</button>
+      <button class="navBtn" data-tab="settingsTab">настройки</button>
+    </nav>
+  </div>
+
+  <script src="main.js"></script>
+</body>
+</html>
