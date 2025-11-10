@@ -1,5 +1,5 @@
 // webapp/main.js
-const API_BASE = '{{API_BASE}}' // потом заменишь
+const API_BASE = 'https://lineup2-ieb3fdxl.b4a.run'
 
 const state = {
   queues: [],
