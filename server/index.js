@@ -9,7 +9,7 @@ const app = express()
 app.use(express.json())
 app.use(cors())
 
-const PORT = process.env.PORT || 8080  // <-- изменили на 8080 для Back4App
+const PORT = process.env.PORT || 8080  // <-- для Back4App
 const BOT_TOKEN = process.env.BOT_TOKEN || 'demo-token'
 
 // создаём базу (файл появится сам)
@@ -80,12 +80,23 @@ app.post('/api/join', (req, res) => {
   })
 })
 
-// auth через telegram initData
+// auth через telegram initData с вытаскиванием username
 app.post('/api/auth', (req, res) => {
   const { initData } = req.body
   const valid = verifyInitData(initData)
   if (!valid) return res.status(403).json({ error: 'invalid initData' })
-  res.json({ ok: true })
+
+  let username = 'anon'
+  try {
+    const params = new URLSearchParams(initData)
+    const userStr = params.get('user') // Telegram WebApp передаёт user как JSON
+    if (userStr) {
+      const user = JSON.parse(userStr)
+      username = user.username || user.first_name || 'anon'
+    }
+  } catch(e){ console.error(e) }
+
+  res.json({ ok: true, user: { username } })
 })
 
 // demo-режим для теста
@@ -97,5 +108,4 @@ app.post('/api/demo-session', (req, res) => {
   })
 })
 
-// заменили порт на process.env.PORT || 8080
 app.listen(PORT, () => console.log(`🚀 server running on ${PORT}`))
