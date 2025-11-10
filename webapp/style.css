@@ -1,0 +1,51 @@
+:root{
+  --bg:#0b0b0f;
+  --card:#0f1720;
+  --muted:#9aa6b2;
+  --accent:#16a34a;
+  --accent-2:#22c55e;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:Inter,system-ui,Arial;
+  background:linear-gradient(180deg,#030312 0%, #0b0b0f 100%);
+  color:#e6eef3;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:12px;
+}
+.app{width:100%; max-width:420px}
+.card{
+  background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border-radius:14px;
+  padding:14px;
+  min-height:60vh;
+  box-shadow:0 8px 30px rgba(2,6,23,0.6);
+}
+h1{font-size:20px;margin:6px 0}
+.tab{display:none}
+.tab.active{display:block}
+.row{display:flex;gap:8px;align-items:center;margin-bottom:8px}
+.bets{display:flex;gap:8px}
+.betBtn{background:#172029;border:none;padding:8px 10px;border-radius:8px;color:var(--muted);cursor:pointer}
+.betBtn.active{background:linear-gradient(90deg,var(--accent),var(--accent-2));color:#041014}
+input[type="text"],input[type="number"]{
+  width:100%;padding:10px;border-radius:10px;border:1px solid rgba(255,255,255,0.03);background:#071018;color:#e6eef3;margin:8px 0
+}
+.controls{display:flex;justify-content:center;margin:8px 0}
+button.primary{background:linear-gradient(90deg,var(--accent),var(--accent-2));border:none;color:#02110b;padding:12px 18px;border-radius:12px;cursor:pointer}
+.queueBox{background:rgba(255,255,255,0.02);padding:8px;border-radius:10px;margin-top:10px}
+ul{list-style:none;padding:0;margin:0}
+li{padding:8px;border-bottom:1px dashed rgba(255,255,255,0.02);font-size:14px}
+.result.hidden{display:none}
+.result{margin-top:10px;padding:10px;background:rgba(255,255,255,0.02);border-radius:10px}
+.bottomNav{
+  display:flex;gap:2px;position:fixed;left:50%;transform:translateX(-50%);
+  bottom:12px;width:100%;max-width:420px;padding:8px;background:linear-gradient(180deg,#02060a, #061018);
+  border-radius:14px;justify-content:space-between;box-shadow:0 10px 30px rgba(1,4,12,0.6)
+}
+.bottomNav .navBtn{flex:1;background:transparent;border:0;color:var(--muted);padding:10px;border-radius:8px}
+.bottomNav .navBtn.active{color:#e6eef3}
