@@ -84,15 +84,24 @@ async function joinQueue(id) {
   loadQueues()
 }
 
+// ======================== Инициализация ========================
 async function init() {
   console.log('miniapp loaded')
   try {
     if (window.Telegram?.WebApp?.initData) {
-      await api('/api/auth','POST',{initData: window.Telegram.WebApp.initData})
+      // отправляем initData на бэк и получаем пользователя
+      const res = await api('/api/auth','POST',{initData: window.Telegram.WebApp.initData})
+      if(res.ok && res.user){
+        state.user.username = res.user.username || 'anon'
+      }
     } else {
-      await api('/api/demo-session','POST')
+      const demo = await api('/api/demo-session','POST')
+      if(demo.ok && demo.user){
+        state.user.username = demo.user.username || 'demo'
+      }
     }
   } catch(e){console.error(e)}
+
   renderTabs()
   loadQueues()
 }
