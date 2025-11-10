@@ -63,7 +63,7 @@ function renderContent() {
     })
   } else if (state.activeTab === 'profile') {
     const p = document.createElement('div')
-    p.textContent = `Имя: ${state.user.username}`
+    p.textContent = `Имя: ${state.user.username}` // теперь берём username из state
     container.appendChild(p)
   } else if (state.activeTab === 'wallet') {
     const w = document.createElement('div')
@@ -84,24 +84,20 @@ async function joinQueue(id) {
   loadQueues()
 }
 
-// ======================== Инициализация ========================
 async function init() {
   console.log('miniapp loaded')
   try {
+    let userData
     if (window.Telegram?.WebApp?.initData) {
-      // отправляем initData на бэк и получаем пользователя
       const res = await api('/api/auth','POST',{initData: window.Telegram.WebApp.initData})
-      if(res.ok && res.user){
-        state.user.username = res.user.username || 'anon'
-      }
+      if(res.ok && res.user) userData = res.user
     } else {
-      const demo = await api('/api/demo-session','POST')
-      if(demo.ok && demo.user){
-        state.user.username = demo.user.username || 'demo'
-      }
+      const res = await api('/api/demo-session','POST')
+      if(res.ok && res.user) userData = res.user
     }
+    if(userData) state.user = userData
   } catch(e){console.error(e)}
-
+  
   renderTabs()
   loadQueues()
 }
